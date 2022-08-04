@@ -1,0 +1,16 @@
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\Uber.csproj.AssemblyReference.cache
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\Uber.GeneratedMSBuildEditorConfig.editorconfig
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\Uber.AssemblyInfoInputs.cache
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\Uber.AssemblyInfo.cs
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\Uber.csproj.CoreCompileInputs.cache
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\bin\Debug\net5.0\Uber.exe
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\bin\Debug\net5.0\Uber.deps.json
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\bin\Debug\net5.0\Uber.runtimeconfig.json
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\bin\Debug\net5.0\Uber.runtimeconfig.dev.json
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\bin\Debug\net5.0\Uber.dll
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\bin\Debug\net5.0\Uber.pdb
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\Uber.dll
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\refint\Uber.dll
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\Uber.pdb
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\Uber.genruntimeconfig.cache
+C:\Estudo\Cursos\BRQ\Orientacao a objeto\Exercicios\Uber\Uber\obj\Debug\net5.0\ref\Uber.dll
