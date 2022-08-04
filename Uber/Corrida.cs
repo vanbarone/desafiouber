@@ -101,7 +101,7 @@ namespace Uber
 
         public void iniciarCorrida()
         {
-            status = StatusCorrida.statusCorrida.emTransito;
+            status = StatusCorrida.statusCorrida.emAndamento;
 
             Console.WriteLine($"\nCORRIDA INICIADA ***********");
 

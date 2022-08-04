@@ -11,7 +11,7 @@ namespace Uber
         public enum statusCorrida
         {
             aguardandoMotorista,
-            emTransito,
+            emAndamento,
             finalizada,
             cancelada
         }
