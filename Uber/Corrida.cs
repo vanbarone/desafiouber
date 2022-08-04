@@ -32,17 +32,17 @@ namespace Uber
             set { _passageiro = value; }
         }
 
-        private Endereco _origem;
+        private string _origem;
 
-        public Endereco origem
+        public string origem
         {
             get { return _origem; }
             set { _origem = value; }
         }
 
-        private Endereco _destino;
+        private string _destino;
 
-        public Endereco destino
+        public string destino
         {
             get { return _destino; }
             set { _destino = value; }
@@ -80,22 +80,22 @@ namespace Uber
             set { _status = value; }
         }
 
-        private Enum.FormaPagto _formaPagto;
+        private FormaPagamento.FormaPagto _formaPagto;
 
-        public Enum.FormaPagto formaPagto
+        public FormaPagamento.FormaPagto formaPagto
         {
             get { return _formaPagto; }
             set { _formaPagto = value; }
         }
 
-        public Corrida(Passageiro passageiro, Endereco origem, Endereco destino, Enum.FormaPagto formaPagto)
+        public Corrida(Passageiro passageiro, string origem, string destino)
         {
             this.data = DateTime.Now;
             this.passageiro = passageiro;
             this.origem = origem;   
             this.destino = destino;
-            this.formaPagto = formaPagto;
 
+            this.valor = calcularValor();
             this.status = StatusCorrida.statusCorrida.aguardandoMotorista;
         }
 
@@ -103,24 +103,51 @@ namespace Uber
         {
             status = StatusCorrida.statusCorrida.emTransito;
 
-            if (formaPagto == Enum.FormaPagto.crédito)
+            Console.WriteLine($"\nCORRIDA INICIADA ***********");
+
+            cobrarCorrida();
+         }
+
+        public void cobrarCorrida()
+        {
+            if (formaPagto == FormaPagamento.FormaPagto.crédito)
             {
-                Console.WriteLine($"Corrida iniciada - Foi lançada uma cobrança no valor de R$ {valor} no seu cartão de crédito");
-            } else if (formaPagto == Enum.FormaPagto.cashUber)
-            {
-                if (valor <= passageiro.saldo)
-                {
-                    passageiro.saldo -= valor;
-                    Console.WriteLine($"Corrida iniciada - O valor da corrida foi debitado de seu saldo Uber");
-                } else
-                {
-                    Console.WriteLine($"Essa corrida será cancelada pois você não tem saldo Uber suficiente");
-                    cancelarCorrida();
-                }
-            } else
-            {
-                Console.WriteLine($"Corrida iniciada");
+                Console.WriteLine($"\tATENÇÂO: Foi lançada uma cobrança no valor de R$ {valor} no seu cartão de crédito");
             }
+            else if (formaPagto == FormaPagamento.FormaPagto.cashUber)
+            {
+                passageiro.saldo -= valor;
+                Console.WriteLine($"\tATENÇÂO: O valor de R$ {valor} foi debitado de seu saldo Uber (Saldo atual: {passageiro.saldo})");
+            }
+        }
+
+        public void cobrarCorrida(double novoValor)
+        {
+            double vlDiferenca = novoValor - valor;
+
+            valor = novoValor;
+
+            if (formaPagto == FormaPagamento.FormaPagto.crédito)
+            {
+                Console.WriteLine($"\tATENÇÂO: Foi lançada uma cobrança no valor de R$ {vlDiferenca} no seu cartão de crédito");
+            }
+            else if (formaPagto == FormaPagamento.FormaPagto.cashUber)
+            {
+                if (vlDiferenca <= passageiro.saldo)
+                {
+                    passageiro.saldo -= vlDiferenca;
+                    Console.WriteLine($"\tATENÇÂO: O valor de R$ {vlDiferenca} foi debitado de seu saldo Uber (Saldo atual: {passageiro.saldo})");
+                }
+                else
+                {
+                    Console.WriteLine($"\tATENÇÂO: A diferença de R$ {vlDiferenca} deve ser paga diretamente ao motorista pois seu saldo de Uber é insuficiente");
+                }
+            }
+        }
+
+        public double calcularValor()
+        {
+            return 70;
         }
 
         public void cancelarCorrida()
@@ -135,53 +162,16 @@ namespace Uber
 
         public void finalizarCorrida()
         {
-            status = StatusCorrida.statusCorrida.finalizada;
-
-            if (formaPagto == Enum.FormaPagto.dinheiro)
-            {
-                Console.WriteLine($"Corrida finalizada - Você já pode fazer o pagamento para o motorista");
-            }
-            else
-            {
-                Console.WriteLine("Corrida Finalizada");
-            }
+            Console.WriteLine("\nCORRIDA FINALIZADA ***********");
 
             motorista.alterarStatus(StatusMotorista.statusMotorista.disponível, false);
+
             status = StatusCorrida.statusCorrida.finalizada;
+
+            if (formaPagto == FormaPagamento.FormaPagto.dinheiro)
+            {
+                Console.WriteLine($"\nATENÇÂO: Você já pode fazer o pagamento para o motorista");    
+            }
         }
-
-        public void finalizarCorrida(double novoValor)
-        {
-            double vlRestante = novoValor - valor;
-
-            valor = novoValor;  
-
-            status = StatusCorrida.statusCorrida.finalizada;
-
-            if (formaPagto == Enum.FormaPagto.crédito)
-            {
-                Console.WriteLine($"Corrida finalizada com alteração de valor - A diferença de R$ {vlRestante} foi lançada no seu cartão de crédito");
-            }
-            else if (formaPagto == Enum.FormaPagto.cashUber)
-            {
-                if (vlRestante <= passageiro.saldo)
-                {
-                    passageiro.saldo -= vlRestante;
-                    Console.WriteLine($"Corrida finalizada com alteração de valor - A diferença de R$ {vlRestante} foi debitada de seu saldo Uber");
-                }
-                else
-                {
-                    Console.WriteLine($"Corrida finalizada com alteração de valor - A diferença de R$ {vlRestante} deve ser paga diretamente ao motorista pois seu saldo de Uber é insuficiente");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Corrida finalizada com alteração de valor - Você já pode fazer o pagamento para o motorista");
-            }
-
-            motorista.alterarStatus(StatusMotorista.statusMotorista.disponível, false);
-            status = StatusCorrida.statusCorrida.finalizada;
-        }
-
     }
 }

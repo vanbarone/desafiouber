@@ -43,14 +43,38 @@ namespace Uber
 
         public override string mostrar()
         {
-            return $"MOTORISTA: {nome} - {email} - {status} - ({carro.mostrar()})";
+            return $"\t{nome} - Carro: {carro.mostrar()}";
         }
 
-        public void aceitarCorrida()
+        public bool aceitarCorrida(string origem, string destino, FormaPagamento.FormaPagto formaPagamento)
         {
-            status = StatusMotorista.statusMotorista.ocupado;
+            string opcao;
 
-            Console.WriteLine($"O motorista {nome} aceitou a corrida");
+            Console.ForegroundColor = ConsoleColor.Blue;   
+
+            Console.WriteLine();
+            Console.WriteLine($"{nome} deseja aceitar essa corrida ? (Digite 'S' ou 'N') \n" +
+                              $"   Endereço de origem: {origem}\n" +
+                              $"   Endereço de destino: {destino}\n" +
+                              $"   Forma de pagamento: {formaPagamento}");
+
+            opcao = Console.ReadLine().ToUpper().Trim();
+            if (opcao.Length > 1) opcao = opcao.Substring(0, 1);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            if (opcao == "S")
+            {
+                status = StatusMotorista.statusMotorista.ocupado;
+
+                Console.WriteLine($"\nO motorista {nome} aceitou a corrida - Ele chegará em 5 minutos \n" +
+                                  $"\tCarro: {carro.mostrar()}");
+
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
         public void alterarStatus(StatusMotorista.statusMotorista novoStatus, bool mostraMsg = true)

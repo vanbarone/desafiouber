@@ -30,14 +30,14 @@ namespace Uber
             this.saldo = saldo;
         }
 
-        public void solicitarCorrida(Endereco origem, Endereco destino)
+        public void solicitarCorrida(string origem, string destino)
         {
             Console.WriteLine($"{nome} está solicitando uma corrida");
         }
 
         public void cancelarCorrida()
         {
-            Console.WriteLine($"{nome} está cancelando a corrida");
+            Console.WriteLine($"\n{nome}, sua corrida foi cancelada - Obrigada por utilizar nossos serviços");
         }
 
     }

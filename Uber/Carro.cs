@@ -58,7 +58,7 @@ namespace Uber
 
         public string mostrar()
         {
-            return $"{marca}/{modelo}/{placa}/{cor}";
+            return $"{modelo}({marca})/Placa: {placa}/Cor: {cor}";
         }
 
     }
